@@ -15,5 +15,12 @@ interface Channel {
 export interface AllChannelsResponse {
     copyright: string,
     channels: Channel[],
-    pagination: (number | string)[]
+    pagination: {
+        page: number,
+        size: number,
+        totalhits: number,
+        totalpages: number,
+        nextpage?: string,
+        previouspage?: string,
+    }
 }
