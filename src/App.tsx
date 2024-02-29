@@ -3,21 +3,29 @@ import { getAllChannels } from "./api/getAllChannels"
 import { AllChannelsResponse } from "./interfaces";
 
 export function App() {
-  const [data, setData] = useState<AllChannelsResponse | null>(null)
+  const [allChannelsData, setAllChannelsData] = useState<AllChannelsResponse | null>(null)
+
+  async function fetchData(): Promise<void> {
+    try {
+      const response = await getAllChannels()
+      setAllChannelsData(response)
+    } catch (err) {
+      console.error("Err fetching data: ", err)
+    }
+  }
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await getAllChannels()
-      setData(response)
-    }
+    console.log("useEffect triggered.")
     fetchData()
   }, [])
 
-  if(data) {console.log(data)}
+  if (allChannelsData) {
+    console.log("data received:", allChannelsData)
+  }
 
   return (
     <>
-    <div>App</div>
+      <div>App</div>
     </>
   )
 }
