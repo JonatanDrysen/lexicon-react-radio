@@ -29,6 +29,7 @@ interface Programs {
         name: string
     },
     archived: boolean,
+    broadcastinfo?: string,
     hasondemand: boolean,
     haspod: boolean,
     responsibleeditor: string,
