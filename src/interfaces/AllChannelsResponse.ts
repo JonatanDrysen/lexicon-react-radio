@@ -1,3 +1,5 @@
+import { Pagination } from "."
+
 interface Channel {
     image: string,
     imagetemplate: string,
@@ -15,12 +17,5 @@ interface Channel {
 export interface AllChannelsResponse {
     copyright: string,
     channels: Channel[],
-    pagination: {
-        page: number,
-        size: number,
-        totalhits: number,
-        totalpages: number,
-        nextpage?: string,
-        previouspage?: string,
-    }
+    pagination: Pagination
 }

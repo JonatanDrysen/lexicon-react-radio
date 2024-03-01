@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { getAllChannels } from "../api/getAllChannels"
 import { AllChannelsResponse } from "../interfaces"
+import { getChannelPrograms } from "../api/getChannelPrograms"
 
 export function AllChannelsList() {
     const [currentPage, setCurrentPage] = useState<number>(1)
@@ -28,17 +29,17 @@ export function AllChannelsList() {
 
     return (
         <div>
-            <h2>All channels:</h2>
+            <h2>Alla kanaler:</h2>
             <ul>
                 {allChannelsData && allChannelsData.channels.map((channel) => {
                     return (
-                        <li key={channel.id}>{channel.name}</li>
+                        <li key={channel.id}><a onClick={() => getChannelPrograms(channel.id)}>{channel.name}</a></li>
                     )
                 })}
             </ul>
             {allChannelsData &&
                 <p>
-                    Page {allChannelsData.pagination.page} of {allChannelsData.pagination.totalpages}
+                    Sida {allChannelsData.pagination.page} av {allChannelsData.pagination.totalpages}
                     <button onClick={() => handlePageChange("prev", allChannelsData.pagination.totalpages)}>{"<"}</button>
                     <button onClick={() => handlePageChange("next", allChannelsData.pagination.totalpages)}>{">"}</button>
                 </p>
