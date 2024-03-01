@@ -14,7 +14,7 @@ interface Channel {
     name: string
 }
 
-export interface AllChannelsResponse {
+export interface ChannelListResponse {
     copyright: string,
     channels: Channel[],
     pagination: Pagination

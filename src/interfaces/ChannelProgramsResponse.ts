@@ -7,6 +7,8 @@ interface SocialMediaPlatforms {
 }
 
 interface Programs {
+    id: number,
+    name: string,
     description: string,
     programcategory: {
         id: number,
@@ -32,9 +34,7 @@ interface Programs {
     broadcastinfo?: string,
     hasondemand: boolean,
     haspod: boolean,
-    responsibleeditor: string,
-    id: number,
-    name: string
+    responsibleeditor: string
 }
 
 export interface ChannelProgramsResponse {

@@ -1,3 +1,3 @@
 export * from "./Pagination"
-export * from "./AllChannelsResponse"
+export * from "./ChannelListResponse"
 export * from "./ChannelProgramsResponse"

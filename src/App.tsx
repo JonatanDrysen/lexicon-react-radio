@@ -1,11 +1,14 @@
-import { AllChannelsList } from "./components/AllChannelsList"
+import { Route, Routes } from "react-router-dom";
+import { HomePage } from "./pages/HomePage";
+import { ChannelPage } from "./pages/ChannelPage";
 
 export function App() {
   return (
     <>
-      <h1>Sveriges Radio</h1>
-
-      <AllChannelsList />
+      <Routes>
+        <Route path="/" element={ <HomePage /> } />
+        <Route path="/channels/:channelId" element={ <ChannelPage /> } />
+      </Routes>
     </>
   )
 }
