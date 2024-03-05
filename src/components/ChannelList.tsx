@@ -29,7 +29,6 @@ export function ChannelList() {
 
     return (
         <div>
-            <h2>Alla kanaler:</h2>
             <ul>
                 {achannelListData && achannelListData.channels.map((channel) => {
                     return (

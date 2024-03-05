@@ -19,6 +19,7 @@ export function ChannelPage() {
 
     return (
         <>
+            <h2>{channelData && channelData.programs[0].channel.name}</h2>
             <div>
                 <ul>
                     {channelData && channelData.programs.map((program) => {
@@ -27,7 +28,6 @@ export function ChannelPage() {
                         )
                     })}
                 </ul>
-
             </div>
         </>
     )
