@@ -1,33 +1,39 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getChannelPrograms } from "../api/getChannelPrograms";
-import { ChannelProgramsResponse } from "../interfaces";
+import { ChannelProgramsResponse, ChannelScheduleResponse } from "../interfaces";
+import { ProgramView } from "./ProgramView";
+import { TableauView } from "./TableauView";
+import { getChannelSchedule } from "../api/getChannelSchedule";
 
 export function Channel() {
     const { channelId } = useParams()
     const [channelData, setChannelData] = useState<ChannelProgramsResponse | null>(null)
+    const [scheduleData, setScheduleData] = useState<ChannelScheduleResponse | null>(null)
+    const [view, setView] = useState("program")    
 
     useEffect(() => {
         const id: number = Number(channelId)
 
-        const fetchChannel = async (id: number) => {
-            const response = await getChannelPrograms(id)
-            setChannelData(() => response)
+        const fetchData = async (id: number) => {
+            const programResponse = await getChannelPrograms(id)
+            const scheduleResponse = await getChannelSchedule(id)
+            setChannelData(() => programResponse)
+            setScheduleData(() => scheduleResponse)
         }
-        fetchChannel(id)
+        fetchData(id)
     }, [channelId])
 
     return (
         <>
             <h2>{channelData && channelData.programs[0].channel.name}</h2>
             <div>
-                <ul>
-                    {channelData && channelData.programs.map((program) => {
-                        return (
-                            <li key={program.id}>{program.name}</li>
-                        )
-                    })}
-                </ul>
+                <button onClick={() => setView("program")}>Program</button>
+                <button onClick={() => setView("tableau")}>Tablå</button>
+            </div>
+            <div>
+                {view === "program" && <ProgramView channelData={channelData} />}
+                {view === "tableau" && <TableauView scheduleData={scheduleData}/>}
             </div>
         </>
     )
