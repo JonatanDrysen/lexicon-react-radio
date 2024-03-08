@@ -27,6 +27,7 @@ export function TableauView({ scheduleData }: ScheduleViewProps): JSX.Element {
       <div>
         <ul>
           {scheduleData && scheduleData.schedule.map((episode) => {
+            console.log("TableauView: ", episode.episodeid, episode.title)
             return (
               <li key={episode.episodeid}>
                 <span>
